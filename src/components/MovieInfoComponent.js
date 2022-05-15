@@ -60,7 +60,6 @@ const MovieInfoComponent = (props) => {
   const [movieInfo, setMovieInfo] = useState();
   const { selectedMovie } = props;
   const [showDetails, setClearDetails] = useState(true);
-  console.log("selectedMovie", selectedMovie);
 
   useEffect(() => {
     Axios.get(
@@ -71,8 +70,6 @@ const MovieInfoComponent = (props) => {
       } else {
         setMovieInfo();
       }
-
-      console.log("setMovieInfo(response.data)", response.data);
     });
   }, [selectedMovie, movieInfo, showDetails]);
   return (

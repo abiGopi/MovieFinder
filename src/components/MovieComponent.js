@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from "react";
+import Moment from 'moment';
 import MovieInfoComponent from "./MovieInfoComponent";
 const Container = styled.div`
   display: flex;
@@ -60,6 +61,7 @@ const MovieComponent = (props) => {
   };
 
   return (
+    <div>
     <Container>
       {selectedMovie && <MovieInfoComponent selectedMovie={selectedMovie} />}
       <MovieContainer>
@@ -70,7 +72,7 @@ const MovieComponent = (props) => {
 
         <MovieName>{title}</MovieName>
         <InfoColumn>
-          <MovieInfo>Year : {release_date}</MovieInfo>
+          <MovieInfo>Year : {Moment(new Date(release_date)).format('YYYY')}</MovieInfo>
           <MovieInfo>Popularity : {popularity}</MovieInfo>
         </InfoColumn>
         <DetailsButton>
@@ -80,6 +82,7 @@ const MovieComponent = (props) => {
         </DetailsButton>
       </MovieContainer>
     </Container>
+    </div>
   );
 };
 export default MovieComponent;

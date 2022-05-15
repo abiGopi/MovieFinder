@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import styled from "styled-components";
-// import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import MovieComponent from "./components/MovieComponent";
-// import { movieData } from "./reducers/movieAction";
-
+import { movieData } from "./reducers/movieAction";
+import movieIcon from "./movie-icon.svg";
+import searchIcon from "./search-icon.svg";
+import homeBanner from "./home-banner.png";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -97,21 +99,21 @@ function App() {
   const [movieList, updateMovieList] = useState([]);
 
   const [timeoutId, updateTimeoutId] = useState();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const movieDataObject = useSelector((state) => state.movies);
-  // console.log("movieDataObject", movieDataObject);
+  const movieDataObject = useSelector((state) => state.movies);
+  console.log("movieDataObject", movieDataObject);
 
   const fetchData = async (searchString) => {
     const response = await Axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=5efb1ad831b844d68a199c8f7f445d2d&query=${searchString}`
     );
     updateMovieList(response.data.results);
-    // dispatch(
-    //   movieData({
-    //     details: response.data.results,
-    //   })
-    // );
+    dispatch(
+      movieData({
+        details: response.data.results,
+      })
+    );
   };
 
   const onTextChange = (e) => {
@@ -125,10 +127,15 @@ function App() {
     <Container>
       <Header>
         <AppName>
-          <MovieImage src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg" />
+          <MovieImage
+            src={
+              "https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg"
+            }
+            alt={"logo"}
+          />
         </AppName>
         <SearchBox>
-          <SearchIcon src="/search-icon.svg" />
+          <SearchIcon src={searchIcon} />
           <SearchInput
             placeholder="Search Movie"
             value={searchQuery}
@@ -137,23 +144,19 @@ function App() {
         </SearchBox>
       </Header>
       <BodyContainer>
-        <BackDropImage src="/home-banner.png" />
+        <BackDropImage src={homeBanner} alt={"Home banner"} />
         <BodyText>
           <div>Welcome.</div>
           Millions of movies, TV shows and people to discover. Explore now.
         </BodyText>
       </BodyContainer>
-
       <MovieListContainer>
         {movieList?.length ? (
           movieList.map((movie, index) => (
             <MovieComponent key={index} movie={movie} />
           ))
         ) : (
-          <Placeholder
-            src="\movie-icon.svg"
-            alt="Please Enter the Movie title"
-          />
+          <Placeholder src={movieIcon} alt={"Please Enter the Movie title"} />
         )}
       </MovieListContainer>
     </Container>
