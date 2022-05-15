@@ -7,6 +7,7 @@ import { movieData } from "./reducers/movieAction";
 import movieIcon from "./movie-icon.svg";
 import searchIcon from "./search-icon.svg";
 import homeBanner from "./home-banner.png";
+import { Rating } from "react-simple-star-rating";
 const Container = styled.div`
   display: flex;
   flex-direction: column;

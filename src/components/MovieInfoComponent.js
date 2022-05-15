@@ -92,7 +92,7 @@ const MovieInfoComponent = (props) => {
                 Overview: <span>{movieInfo?.overview}</span>
               </MovieInfo>
               <MovieInfo>
-                Popularity: <span>{movieInfo?.Popularity}</span>
+                Popularity: <span>{movieInfo?.popularity}</span>
               </MovieInfo>
               <MovieInfo>
                 Runtime: <span>{movieInfo?.runtime}</span>

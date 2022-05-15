@@ -73,7 +73,7 @@ const MovieComponent = (props) => {
         <MovieName>{title}</MovieName>
         <InfoColumn>
           <MovieInfo>Year : {Moment(new Date(release_date)).format('YYYY')}</MovieInfo>
-          <MovieInfo>Popularity : {popularity}</MovieInfo>
+          <MovieInfo>Popularity :{popularity}</MovieInfo>
         </InfoColumn>
         <DetailsButton>
           <button onClick={viewMovieInfo} value={id}>
