@@ -7,7 +7,8 @@ import { movieData } from "./reducers/movieAction";
 import movieIcon from "./movie-icon.svg";
 import searchIcon from "./search-icon.svg";
 import homeBanner from "./home-banner.png";
-import { Rating } from "react-simple-star-rating";
+import { GoMarkGithub } from "react-icons/go";
+const myLink = "https://github.com/abiGopi/MovieFinder/tree/master";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,16 +34,24 @@ const Header = styled.div`
 const SearchBox = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 10px 10px;
-  border-radius: 6px;
-  margin-left: 20px;
-  width: 50%;
+  padding: 10px 50px;
+  border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 40px;
+  width: 60;
   background-color: white;
 `;
 const SearchIcon = styled.img`
   width: 32px;
   height: 32px;
 `;
+
+const GitIcon = styled.div`
+  width: 50px;
+  height: 32px;
+  padding-left: 450px;
+`;
+
 const MovieImage = styled.img`
   height: 100%;
   display: flex;
@@ -135,6 +144,12 @@ function App() {
             alt={"logo"}
           />
         </AppName>
+        <GitIcon>
+          <a href={myLink}>
+        
+            <GoMarkGithub fill="white" />
+          </a>
+        </GitIcon>
         <SearchBox>
           <SearchIcon src={searchIcon} />
           <SearchInput
